@@ -1,4 +1,4 @@
-function [X] = caluclate_features(raw_data)
+function [X] = calculate_features(raw_data)
 %CALUCLATE_FEATURES Summary of this function goes here
 %   Detailed explanation goes here
 
