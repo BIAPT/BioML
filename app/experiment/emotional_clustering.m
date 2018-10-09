@@ -19,7 +19,7 @@
     data_folder = uigetdir;
     data_files = dir(fullfile(data_folder,extension)); %this is a structure
     
-    
+    % Iterating over the participant and calculating the features
     for participant_id = 1:length(data_files)
         %% Calculate the features and return a matrix
         file_name = strcat(data_files(participant_id).folder,filesep,data_files(participant_id).name);
@@ -31,6 +31,7 @@
         Y = [Y;sample_id];
     
     end
+    
     %% Run the K-means
     k = 4:10;
     idx = kmeans(X,10);
@@ -39,3 +40,4 @@
     %% Assign a cluster to a participant depending on its ID
     [participants_cluster,percentages_aggrement] = assign_cluster(idx,Y);
     
+    print_clusters_ratio(participants_cluster);
