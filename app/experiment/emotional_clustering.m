@@ -30,12 +30,12 @@
         X = [X;features_matrix];
         Y = [Y;sample_id];
     
-    
-    
     end
     %% Run the K-means
-    %idx = kmeans(X,k)
+    k = 4:10;
+    idx = kmeans(X,10);
     % idx will contain the cluster belongings to a given sample!
     
     %% Assign a cluster to a participant depending on its ID
-
+    [participants_cluster,percentages_aggrement] = assign_cluster(idx,Y);
+    
