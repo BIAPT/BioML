@@ -9,21 +9,32 @@
 % Calm: 3.13,3.14,3.15
 
 
-    %% Variables setup
-    
+    %% Variables setup;
+    extension = "*.csv";
+    X = [];
+    Y = [];
 
-%% Load the raw data (From a folder) and iterate through each participant
-%  For now we will only load one data file and play with it
-
-    current_participant_id = 1;
-    %% Calculate the features and return a matrix
-    X = calculate_features(raw_data);
-    sample_id = repmat(current_participant_id,[length(X) 1])
+    %% Load the raw data (From a folder) and iterate through each participant
+    %  For now we will only load one data file and play with it
+    data_folder = uigetdir;
+    data_files = dir(fullfile(data_folder,extension)); %this is a structure
     
-    Y = [Y;sample_id];
     
+    for participant_id = 1:length(data_files)
+        %% Calculate the features and return a matrix
+        file_name = strcat(data_files(participant_id).folder,filesep,data_files(participant_id).name);
+        raw_data = load_data(file_name);
+        features_matrix = calculate_features(raw_data);
+        sample_id = repmat(participant_id,[length(features_matrix) 1]);
+        
+        X = [X;features_matrix];
+        Y = [Y;sample_id];
+    
+    
+    
+    end
     %% Run the K-means
-    idx = kmeans(X,k)
+    %idx = kmeans(X,k)
     % idx will contain the cluster belongings to a given sample!
     
     %% Assign a cluster to a participant depending on its ID
