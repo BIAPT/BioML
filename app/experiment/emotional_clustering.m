@@ -33,11 +33,5 @@
     end
     
     %% Run the K-means
-    k = 4:10;
-    idx = kmeans(X,10);
-    % idx will contain the cluster belongings to a given sample!
-    
-    %% Assign a cluster to a participant depending on its ID
-    [participants_cluster,percentages_aggrement] = assign_cluster(idx,Y);
-    
-    print_clusters_ratio(participants_cluster);
+    [participants_clusters,percentages_aggrements] = run_clustering("kmeans",X,Y,4,34);
+   

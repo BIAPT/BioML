@@ -10,27 +10,25 @@ function [participants_clusters,percentages_aggrements] = run_clustering(type,X,
 %       participants_cluster: matrix of all the clustering id
 %       percentages_aggrements: matrix of all the percentage aggrements
 
-    %% Setting up variables
     participants_clusters = [];
     percentages_aggrements = [];
     
-    %% Select which clustering technique to run
+    % Select which clustering technique to run
     is_kmeans = strcmp(type,"kmeans");
     
-    %% Repeat for start_cluster, start_cluster+1...until end_cluster
+    % Repeat for start_cluster, start_cluster+1...until end_cluster
     for k = start_cluster:end_cluster
-
+      
         if(is_kmeans)
-            disp("Running k means on " + num2str(k) + " clusters"); 
-            idx = kmeans(X,k);
+            idx = kmeans(X,start_cluster);
         end
         
         % Assign a cluster to a participant depending on its ID
         [participants_cluster,percentages_aggrement] = assign_cluster(idx,Y);
         
-        % Store data
+        % Store it
         participants_clusters = [participants_clusters,participants_cluster];
-        percentages_aggrements = [percentages_aggrements,percentages_aggrement];
+        percentages_aggrements = [percentages_aggrement
     end
 end
 
