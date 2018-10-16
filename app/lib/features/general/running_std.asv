@@ -1,0 +1,9 @@
+function [running_std] = running_std(type,data_matrix,length_mean,overlap)
+%RUNNING_STD calculatie the running std for a given modality
+%   Input:
+%       type: bvp,hr,sc,temp
+%       data_matrix: the full dataframe
+%       length_mean: length o
+%       overlap:
+end
+
