@@ -3,18 +3,22 @@ function [X] = calculate_features(raw_data)
 %   Detailed explanation goes here
 
     %% Variables Declaration
-    mean_window_size = 4;
-    mean_window_overlap = 2;
+    window_size = 4;
+    window_overlap = 2;
 
     %% Blood Volume Pulse Features
-    bvp_mean = running_mean("bvp",raw_data,mean_window_size,mean_window_overlap);
+    bvp_mean = running_mean("bvp",raw_data,window_size,window_overlap);
+    bvp_std = running_std("bvp",raw_data,window_size,window_overlap);
     %% Skin Conductance Features
-    sc_mean = running_mean("sc",raw_data,mean_window_size,mean_window_overlap);
+    sc_mean = running_mean("sc",raw_data,window_size,window_overlap);
+    sc_std = running_std("sc",raw_data,window_size,window_overlap);
     %% Temperature Features
-    temp_mean = running_mean("temp",raw_data,mean_window_size,mean_window_overlap);
+    temp_mean = running_mean("temp",raw_data,window_size,window_overlap);
+    temp_std = running_std("temp",raw_data,window_size,window_overlap);
     %% Heart Rate Features
-    hr_mean = running_mean("hr",raw_data,mean_window_size,mean_window_overlap);
+    hr_mean = running_mean("hr",raw_data,window_size,window_overlap);
+    hr_std = running_std("hr",raw_data,window_size,window_overlap);
     
-    X = [bvp_mean;sc_mean;temp_mean;hr_mean]';
+    X = [bvp_mean;bvp_std;sc_mean;sc_std;temp_mean;temp_std;hr_mean;hr_std]';
 end
 
