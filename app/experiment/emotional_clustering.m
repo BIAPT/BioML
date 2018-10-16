@@ -33,5 +33,5 @@
     end
     
     %% Run the K-means
-    [participants_clusters,percentages_aggrements] = run_clustering("kmeans",X,Y,4,34);
+    [participants_clusters,percentages_aggrements] = run_clustering(X,Y,"kmeans","sqeuclidean",4,34);
    

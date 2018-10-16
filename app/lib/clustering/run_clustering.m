@@ -1,4 +1,4 @@
-function [participants_clusters,percentages_aggrements] = run_clustering(type,X,Y,start_cluster,end_cluster)
+function [participants_clusters,percentages_aggrements] = run_clustering(X,Y,type,distance,start_cluster,end_cluster)
 %RUN_CLUSTERING Will iterate from start to end and run the clustering
 %analysis on all the possible cluster
 %   Input:
