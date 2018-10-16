@@ -1,6 +1,9 @@
 function [X] = calculate_features(raw_data)
-%CALUCLATE_FEATURES Summary of this function goes here
-%   Detailed explanation goes here
+%CALCuLATE_FEATURES will calculate all the features in a loop
+%   Input:
+%       raw_data: the unprocessed raw data
+%   Output:
+%       X: Features matrix
 
     %% Variables Declaration
     window_size = 4;
