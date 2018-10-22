@@ -8,7 +8,7 @@ e=15;           % Error allowed to not discard SSA results
 nFFT=4096;      % Number of FFT points used to compute periodograms
 delta_s=10;     % Maximum variation between time windows 
 delta_sup=6;    % Upper rectifier amplitude
-delta_inf=6;    % Lower rectifier amplitude (negative)
+delta_inf=3;    % Lower rectifier amplitude (negative)
 % The new estimated HR is a weighted average of the current estimate and
 % the last 2 HR
 alpha=0.9;      % Current estimate weight

@@ -5,7 +5,7 @@ function [ pos,HRest ] = HR_est_iterations( PPG,Acc )
 % Initial parameters
 
 t_window=8;         % Size of time window (in seconds)
-t_step=30/75;       % Size of time step (in seconds)
+t_step=1;       % Size of time step (in seconds)
 sf=75;              % Sampling Frequency
 
 % BandPass filter the whole signal
@@ -38,9 +38,9 @@ if isempty(Acc)
         acc=[];
         pos(i)=lower_index+t_window*sf/2+n_filt/2;
         if i<3
-            [ ~,~,~,HRest(i) ] = HR_est( ppg, acc, sf ,[],[]);
+            [ ~,HRest(i) ] = HR_est( ppg, sf , acc, [],[]);
         else
-            [ ~,~,~,HRest(i) ] = HR_est( ppg, acc, sf ,HRest(i-1),HRest(i-2));
+            [ ~,HRest(i) ] = HR_est( ppg, sf , acc, HRest(i-1),HRest(i-2));
         end
     end
 else
@@ -51,9 +51,9 @@ else
         acc=Acc(lower_index:higher_index,:);
         pos(i)=lower_index+t_window*sf/2+n_filt/2;
         if i<3
-            [ ~,~,~,HRest(i) ] = HR_est( ppg, acc, sf ,[],[]);
+            [ ~,HRest(i) ] = HR_est( ppg, sf , acc ,[],[]);
         else
-            [ ~,~,~,HRest(i) ] = HR_est( ppg, acc, sf ,HRest(i-1),HRest(i-2));
+            [ ~,HRest(i) ] = HR_est( ppg, sf , acc , HRest(i-1),HRest(i-2));
         end
     end
 end
