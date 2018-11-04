@@ -1,0 +1,6 @@
+function [output] = iterateover_over_windows(type,data_matrix,length_std,overlap)
+%ITERATE_OVER_WINDOWS Summary of this function goes here
+%   Detailed explanation goes here
+
+end
+
