@@ -34,7 +34,6 @@ function [running_features] = iterate_over_windows(type,data_matrix,window_size,
     
     %% Array Preallocation
     running_mean = zeros(1,(number_window-1));
-    running_median = zeros(1,(number_window-1));
     running_std = zeros(1,(number_window-1));
     running_var = zeros(1,(number_window-1));
     running_max = zeros(1,(number_window-1));
@@ -46,18 +45,11 @@ function [running_features] = iterate_over_windows(type,data_matrix,window_size,
         start_index = (i-1)*points_per_overlap + 1;
         end_index = (i-1)*points_per_overlap + points_per_window;
         
-        % Split the data at right spot
         window_data = data(start_index:end_index);
-        
         % Analysis techniques:
         % Mean
         if(is_mean) 
             running_mean(i) = mean(window_data);
-        end
-        
-        % Median
-        if(is_median)
-           running_median(i) = median(window_data); 
         end
         
         % Std
@@ -85,7 +77,6 @@ function [running_features] = iterate_over_windows(type,data_matrix,window_size,
     
     %% Load the returning stucture
     running_features.mean = running_mean;
-    running_features.median = running_median;
     running_features.std = running_std;
     running_features.var = running_var;
     running_features.max = running_max;
