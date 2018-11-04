@@ -40,7 +40,7 @@ function [running_features] = iterate_over_windows(type,data_matrix,window_size,
         % Analysis techniques:
         % Mean
         if(is_mean) 
-            running_avg(i) = mean(window_data);
+            running_mean(i) = mean(window_data);
         end
         
         % Std
@@ -53,13 +53,18 @@ function [running_features] = iterate_over_windows(type,data_matrix,window_size,
            running_max(i) = max(window_data);
         end
         
+        if(is_min)
+           running_min(i) = min(window_data); 
+        end
+        
     end
     %% TODO check what to do with the remainder of the data (as we floor down)
     
     
     %% Load the returning stucture
-    running_features.mean = running_avg;
+    running_features.mean = running_mean;
     running_features.std = running_std;
-    
+    running_features.max = running_max;
+    running_features.min = running_min;
 end
 
