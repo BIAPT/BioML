@@ -17,6 +17,8 @@ function [running_features] = iterate_over_windows(type,data_matrix,window_size,
     %% Unpacking the analysis techniques
     is_mean = analysis_techniques.is_mean;
     is_std = analysis_techniques.is_std;
+    is_max = analysis_techniques.is_max;
+    is_min = analysis_techniques.is_min;
     
     %% Setting up the variables
     index_type = get_index_type(type);    
@@ -34,15 +36,21 @@ function [running_features] = iterate_over_windows(type,data_matrix,window_size,
         start_index = (i-1)*points_per_overlap + 1;
         end_index = (i-1)*points_per_overlap + points_per_window;
         
+        window_data = data(start_index:end_index);
         % Analysis techniques:
         % Mean
         if(is_mean) 
-            running_avg(i) = mean(data(start_index:end_index));
+            running_avg(i) = mean(window_data);
         end
         
         % Std
         if(is_std)
-           running_std(i) = std(data(start_index:end_index));s 
+           running_std(i) = std(window_data);
+        end
+        
+        % Max
+        if(is_max)
+           running_max(i) = max(window_data);
         end
         
     end
