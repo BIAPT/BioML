@@ -30,6 +30,12 @@ function [running_features] = iterate_over_windows(type,data_matrix,window_size,
     points_per_overlap = floor(data_length/(number_window*overlap));
     number_window = number_window*overlap;
     
+    %% Array Preallocation
+    running_mean = zeros(1,(number_window-1));
+    running_std = zeros(1,(number_window-1));
+    running_max = zeros(1,(number_window-1));
+    running_min = zeros(1,(number_window-1));
+    
     %% Iterate over the windows
     for i = 1:number_window-1
         % Get the right index for the window
