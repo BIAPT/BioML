@@ -5,7 +5,10 @@ function [ u_k,du_k,AR_Model,PRV_features ] = PRV_est( PPG, sf, varargin )
 %           - PPG: The PPG signal as a column vector
 %           - sf: The sampling frequency
 % Outputs:
-%           - PP sequence
+%           - u_k: peak locations
+%           - du_k: PP intervals
+%           - AR_Model: AR model parameters
+%           - PRV_features: PRV features obtained in real time
 % ----------------------------------------------------------------------------------
 options={{'decimation_ratio' 10 'ratio to decimate data bt'} ...
          {'maxhr' 180 'Maximum HR accepted'} ...
@@ -82,6 +85,7 @@ AR_Model.Theta0=Thetap;
 AR_Model.Kappa=Kappa;
 AR_Model.LogLikel=opt.LogLikel;
 AR_Model.L=L;
+AR_Model.t0=opt.t0;
 
 PRV_features.PP=Mu;
 PRV_features.Var=Var;
